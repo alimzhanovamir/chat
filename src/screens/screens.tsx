@@ -1,4 +1,4 @@
-import { Routes, Route, useRoutes } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 import { getRoutes } from './routes';
 
 import './screens.scss';
