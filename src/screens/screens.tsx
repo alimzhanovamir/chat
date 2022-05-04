@@ -1,16 +1,14 @@
-import { Routes, Route } from 'react-router-dom';
-import { MesssagesScreen } from './messages/messages';
-import { ProfileScreen } from './profile/profile';
+import { Routes, Route, useRoutes } from 'react-router-dom';
+import { getRoutes } from './routes';
 
 import './screens.scss';
 
 export const Screens = () => {
+  const routes = useRoutes(getRoutes(true))
+
   return (
     <main className="screens">
-      <Routes>
-        <Route path='/' element={<MesssagesScreen />}/>
-        <Route path='/profile' element={<ProfileScreen />}/>
-      </Routes>
+      {routes}
     </main>
   )
 }
