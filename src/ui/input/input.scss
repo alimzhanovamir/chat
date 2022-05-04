@@ -1,0 +1,28 @@
+.input {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input__label {
+  position: absolute;
+  top: -.5em;
+  left: 10px;
+  background-color: #35363a;
+  padding: 0 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.input__field {
+  display: block;
+  width: 100%;
+  background: none;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 15px 10px 10px;
+  font-size: 16px;
+  outline: none;
+  color: inherit;
+}
