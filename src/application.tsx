@@ -1,11 +1,16 @@
 import './application.scss'
-import { Authenticate } from './features/authenticate/authenticate'
+import { Screens } from './screens/screens';
+import { Navigation } from './features/navigation/navigation';
+import { BrowserRouter } from 'react-router-dom';
 
 export const Application = () => {
   
   return (
     <div className="application">
-      <Authenticate />
+      <BrowserRouter>
+        <Screens />
+        <Navigation />
+      </BrowserRouter>
     </div>
   )
 }
