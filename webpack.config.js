@@ -39,6 +39,7 @@ module.exports = {
     port: 8080,
     compress: true,
     hot: true,
+    historyApiFallback: true,
   },
   output: {
     filename: 'application.js',
