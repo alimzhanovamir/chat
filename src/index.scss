@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   height: 100%;
   height: -webkit-fill-available;
@@ -8,7 +12,7 @@ html, body {
   background-color: #35363a;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  font-family: Arial, serif, Georgia, Tahoma;
 }
 
 body {
