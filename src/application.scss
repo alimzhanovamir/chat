@@ -1,9 +1,7 @@
 .application {
   display: flex;
-  flex-direction: column;
   flex-grow: 1;
   height: 100%;
   height: -webkit-fill-available;
-  max-width: 460px;
   color: white;
 }

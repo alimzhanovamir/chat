@@ -4,7 +4,7 @@ import { getRoutes } from './routes';
 import './screens.scss';
 
 export const Screens = () => {
-  const routes = useRoutes(getRoutes(true))
+  const routes = useRoutes(getRoutes(false))
 
   return (
     <main className="screens">

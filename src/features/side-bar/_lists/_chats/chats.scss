@@ -1,0 +1,31 @@
+.chats {
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    &__list-item {
+        // border-bottom: 1px solid #606060;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: #606060;
+        }
+
+        &--active {
+            background-color: #606060;
+        }
+
+        .button {
+            width: 100%;
+        }
+    }
+}
