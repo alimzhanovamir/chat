@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../../../../ui/button/button";
 import "./chats.scss";
 
@@ -28,11 +29,11 @@ export const Chats = () => {
         <ul className={`${cssPrefix}__list`}>
             {chatsList.map(({ name, lastMessage }, idx) => (
                 <li className={`${cssPrefix}__list-item`}>
-                    <Button type='link' to={`/chats/${idx}`}>
+                    <Link type='link' to={`/chats/${idx}`}>
                         <span>{name}</span>
                         <br />
                         <span>{lastMessage}</span>
-                    </Button>
+                    </Link>
                 </li>
             ))}
             

@@ -2,7 +2,7 @@ import './application.scss'
 import { Screens } from './screens/screens';
 import { BrowserRouter } from 'react-router-dom';
 import { SideBar } from './features/side-bar/side-bar';
-import { SignInScreen } from './screens/sign-in/sign-in';
+import { AuthScreen } from './screens/auth/auth';
 
 export const Application = () => {
   const isAuth = false;
@@ -18,7 +18,7 @@ export const Application = () => {
               <Screens />
             </>
           )
-          : <SignInScreen />
+          : <AuthScreen />
         }
       </BrowserRouter>
     </div>

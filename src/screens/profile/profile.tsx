@@ -1,5 +1,5 @@
-import { Header } from "../../features/header/header"
-import { Button } from "../../ui/button/button"
+import { Link } from "react-router-dom";
+import { Header } from "../../features/header/header";
 
 export const ProfileScreen = () => {
   return (
@@ -11,7 +11,7 @@ export const ProfileScreen = () => {
         <br />
         surename: Alimzhanov
       </div>
-      <Button type='link' to='/signIn'>Sing-In</Button>
+      <Link type='link' to='/signIn'>Sing-In</Link>
     </>
   )
 }

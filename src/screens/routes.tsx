@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { MesssagesScreen } from './messages/messages';
 import { ProfileScreen } from './profile/profile';
-import { SignInScreen } from './sign-in/sign-in';
+import { AuthScreen } from './auth/auth';
 
 interface route {
   path: string,
@@ -11,12 +11,12 @@ interface route {
 const getRoute = (path: string, element: ReactNode)  => ({ path, element });
 
 export const getRoutes = (isAuthorized: boolean): route[] => {
-  if (!isAuthorized) return [getRoute('/', <SignInScreen />)]
+  if (!isAuthorized) return [getRoute('/', <AuthScreen />)]
 
   return [
     getRoute('/', <MesssagesScreen />),
     getRoute('chats/:id', <MesssagesScreen />),
     getRoute('/profile', <ProfileScreen />),
-    getRoute('/signIn', <SignInScreen />),
+    getRoute('/signIn', <AuthScreen />),
   ]
 }

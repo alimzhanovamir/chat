@@ -1,10 +1,14 @@
 .button {
     display: inline-flex;
-    background: rgba(0,0,0,.07);
+    background: rgba(49, 19, 198, 0.8);
     border-radius: 4px;
     border: none;
     padding: 10px 15px;
     color: white;
     text-decoration: none;
     cursor: pointer;
+
+    &:hover {
+        background: rgba(49, 19, 198, 1);
+    }
 }

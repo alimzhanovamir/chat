@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { Button } from '../../ui/button/button';
 import './header.scss';
 const cssPrefix = 'header';
 
@@ -11,15 +10,11 @@ export const Header = ({ children: screenName }: HeaderInterface) => {
   return (
     <header className={cssPrefix}>
       <ul className={`${cssPrefix}-list`}>
-        <li className={`${cssPrefix}-lis__item`}>
-          <Button onClick={() => history.back()}>&#11013;</Button>
-        </li>
+        <li className={`${cssPrefix}-lis__item`}>&#11013;</li>
         <li className={`${cssPrefix}-lis__item`}>
           { screenName }
         </li>
-        <li className={`${cssPrefix}-lis__item`}>
-        <Button onClick={() => alert('Action!!')}>&#128394;</Button>
-        </li>
+        <li className={`${cssPrefix}-lis__item`}>&#128394;</li>
       </ul>
     </header>
   )

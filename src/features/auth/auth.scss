@@ -1,0 +1,25 @@
+.auth {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 30px;
+    border: 1px solid;
+
+    &__tabs {
+        display: flex;
+        margin: 0 0 15px 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__tab {
+        background-color: transparent;
+        border: none;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 18px;
+        cursor: pointer;
+        
+        &.active {
+            color: rgba(255, 255, 255, 1);
+        }
+    }
+}
