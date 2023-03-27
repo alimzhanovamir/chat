@@ -9,13 +9,7 @@ interface HeaderInterface {
 export const Header = ({ children: screenName }: HeaderInterface) => {
   return (
     <header className={cssPrefix}>
-      <ul className={`${cssPrefix}-list`}>
-        <li className={`${cssPrefix}-lis__item`}>&#11013;</li>
-        <li className={`${cssPrefix}-lis__item`}>
-          { screenName }
-        </li>
-        <li className={`${cssPrefix}-lis__item`}>&#128394;</li>
-      </ul>
+      <h1 className={`${cssPrefix}__title`}>{screenName}</h1>
     </header>
   )
 }

@@ -5,10 +5,26 @@ export const SignUp = () => {
 
     return (
         <div>
-            <Input label='Имя' />
-            <Input label='e-mail' />
-            <Input label='Пароль' type='password' />
-            <Input label='Подтвердить пароль' type='password' />
+            <Input
+                label='Имя'
+                value=""
+                onChange={() => {}}
+            />
+            <Input
+                label='e-mail'
+                value=""
+                onChange={() => {}}
+            />
+            <Input
+                label='Пароль' type='password'
+                value=""
+                onChange={() => {}}
+            />
+            <Input
+                label='Подтвердить пароль' type='password'
+                value=""
+                onChange={() => {}}
+            />
             <Button onClick={() => {}}>Готово</Button>
         </div>
     )

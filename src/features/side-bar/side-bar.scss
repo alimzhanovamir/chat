@@ -1,9 +1,32 @@
 .side-bar {
+    display: flex;
+    flex-direction: column;
     width: 350px;
     border-right: 1px solid #606060;
 
     &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         padding: 10px 10px;
         border-bottom: 1px solid #606060;
+    }
+
+    &__footer {
+        border-top: 1px solid #606060;
+        padding: 10px;
+    }
+
+    &__button {
+        background: #444444;
+        border: 1px solid #444444;
+        border-radius: 3px;
+        padding: 5px 10px;
+        color: #fff;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #606060;
+        }
     }
 }

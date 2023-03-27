@@ -6,6 +6,8 @@ const cssPrefix = 'input';
 interface InputInterface {
   type?: string,
   label?: string,
+  value: string,
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const Input = ({ type, label, ...props }: InputInterface) => {

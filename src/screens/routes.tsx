@@ -10,13 +10,11 @@ interface route {
 
 const getRoute = (path: string, element: ReactNode)  => ({ path, element });
 
-export const getRoutes = (isAuthorized: boolean): route[] => {
-  if (!isAuthorized) return [getRoute('/', <AuthScreen />)]
-
+export const getRoutes = (): route[] => {
   return [
-    getRoute('/', <MesssagesScreen />),
-    getRoute('chats/:id', <MesssagesScreen />),
+    // getRoute('/', <MesssagesScreen />),
+    getRoute('chat/:id', <MesssagesScreen />),
     getRoute('/profile', <ProfileScreen />),
-    getRoute('/signIn', <AuthScreen />),
+    getRoute('/auth', <AuthScreen />),
   ]
 }

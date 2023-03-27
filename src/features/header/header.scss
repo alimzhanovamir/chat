@@ -1,18 +1,16 @@
 .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 42px;
   background-color: #35363a;
   margin-bottom: 20px;
   padding: 5px 0;
-}
 
-.header-list {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.header-list__item {
-
+  &__title {
+    display: inline-flex;
+    margin: 0;
+    font-size: 16px;
+    text-align: center;
+  }
 }
