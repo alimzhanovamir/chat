@@ -1,0 +1,21 @@
+.message-field {
+    padding: 10px;
+
+    &__textarea {
+        width: 100%;
+        background-color: #4f4f4f;
+        border: none;
+        border-radius: 3px;
+        margin-bottom: 5px;
+        padding: 10px;
+        resize: none;
+        font-size: 14px;
+        font-family: inherit;
+        color: #fff;
+    }
+
+    &__bar {
+        margin: 0;
+        text-align: right;
+    }
+}

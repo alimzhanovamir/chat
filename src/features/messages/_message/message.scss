@@ -1,0 +1,42 @@
+.message {
+    max-width: 380px;
+    min-width: 320px;
+    align-self: flex-start;
+    border-radius: 0px 20px 10px 20px;
+    background-color: #4f4f4f;
+    padding: 5px 10px;
+
+    &.right {
+        align-self: flex-end;
+        border-radius: 20px 0px 20px 10px;
+    }
+
+    &__author {
+        border-bottom: 1px solid #606060;
+        margin: 0;
+        padding-bottom: 5px;
+        font-size: 14px;
+        font-style: italic;
+        font-weight: 400;
+    }
+
+    &__text {
+        margin: 0;
+        padding: 10px 0;
+        font-weight: 400;
+    }
+
+    &__timestamp {
+        margin: 0;
+        padding-top: 5px;
+        font-size: 10px;
+        font-style: italic;
+        font-weight: 400;
+        text-align: right;
+        
+        span {
+            padding-top: 5px;
+            border-top: 1px solid #606060;
+        }
+    }
+}
