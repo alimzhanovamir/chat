@@ -2,7 +2,8 @@ import { ReactNode } from 'react';
 import './buttons.scss';
 
 interface ButtonIterface {
-    onClick: () => void,
+    onClick?: () => void,
+    type?: 'submit' | 'button' | 'reset',
     children: string | ReactNode
 };
 
