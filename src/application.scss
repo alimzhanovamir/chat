@@ -4,4 +4,15 @@
   height: 100%;
   height: -webkit-fill-available;
   color: white;
+  
+  padding: 30px 0;
+
+  &__inner {
+    display: flex;
+    width: 100%;
+    max-width: 960px;
+    border: 1px solid #606060;
+    border-radius: 3px;
+    margin: 0 auto;
+  }
 }

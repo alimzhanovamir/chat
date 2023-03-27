@@ -38,18 +38,20 @@ export const Application = () => {
     return (
         <AppContext.Provider value={{ token, userData, saveAuthData, removeToken }}>
             <div className="application">
-                <BrowserRouter>
-                    {
-                        isAuth
-                        ? (
-                            <>
-                                <SideBar />
-                                <Screens />
-                            </>
-                        )
-                        : <AuthScreen />
-                    }
-                </BrowserRouter>
+                <div className="application__inner">
+                    <BrowserRouter>
+                        {
+                            isAuth
+                            ? (
+                                <>
+                                    <SideBar />
+                                    <Screens />
+                                </>
+                            )
+                            : <AuthScreen />
+                        }
+                    </BrowserRouter>
+                </div>
             </div>
         </AppContext.Provider>
 
