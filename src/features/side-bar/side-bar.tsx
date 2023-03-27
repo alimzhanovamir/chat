@@ -12,7 +12,7 @@ export const SideBar = () => {
     return (
         <aside className={cssPrefix}>
             <header className={`${cssPrefix}__header`}>
-                <span>{userData.username}</span>
+                <span>{userData?.username}</span>
                 <button className={`${cssPrefix}__button`} onClick={() => {}}>+</button>
             </header>
             <Chats />

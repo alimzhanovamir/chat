@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AppContext } from "../../../../application";
 import { Button } from "../../../../ui/button/button";
 import "./chats.scss";
@@ -18,9 +18,9 @@ export const Chats = () => {
         <ul className={`${cssPrefix}`}>
             {chats.map(({ id, name }) => (
                 <li className={`${cssPrefix}__item`}>
-                    <Link type='link' to={`/chat/${id}`}>
+                    <NavLink type='link' to={`/chat/${id}`}>
                         <span>{name}</span>
-                    </Link>
+                    </NavLink>
                 </li>
             ))}
             
