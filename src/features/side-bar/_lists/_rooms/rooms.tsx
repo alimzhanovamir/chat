@@ -16,7 +16,7 @@ export const Rooms = () => {
     return (
         <ul className={`${cssPrefix}`}>
             {chats.map(({ id, name }) => (
-                <li className={`${cssPrefix}__item`}>
+                <li key={id} className={`${cssPrefix}__item`}>
                     <NavLink type="link" to={`/room/${id}`}>
                         <span>{name}</span>
                     </NavLink>
@@ -28,8 +28,6 @@ export const Rooms = () => {
 };
 
 async function getChats(token: string, setChats: (chats: Chat[]) => void) {
-    // console.log(JSON.stringify(token));
-    
     try {
         const res = await fetch("http://localhost:3000/rooms", {
             method: "GET",

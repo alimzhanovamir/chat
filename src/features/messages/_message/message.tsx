@@ -17,13 +17,12 @@ export const Message = ({ author, text, timestamp, right }: MessageProps) => (
             right,
         })}
     >
-        <h2
-            className={`${cssPrefix}__author`}
-        
-        >{author}</h2>
-        <p className={`${cssPrefix}__text`}>{text}</p>
-        <p className={`${cssPrefix}__timestamp`}>
-            <span>{timestamp || "14:15"}</span>
-        </p>
+        <div className={`${cssPrefix}__inner`}>
+            <h2 className={`${cssPrefix}__author`}>{author}</h2>
+            <p className={`${cssPrefix}__text`}>{text}</p>
+            {/* <p className={`${cssPrefix}__timestamp`}>
+                <span>{timestamp || "14:15"}</span>
+            </p> */}
+        </div>
     </div>
 );

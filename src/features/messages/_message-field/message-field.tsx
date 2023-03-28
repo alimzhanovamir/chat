@@ -5,15 +5,21 @@ import "./message-field.scss";
 
 const cssPrefix = "message-field";
 
-export const MessageField = ({ messages, setMessages }: { messages: MessageType[], setMessages: ([]) => void }) => {
+type MessageFieldProps = {
+    messages: MessageType[];
+    setMessages: (messages: MessageType[]) => void;
+    setMessageText: (text: string) => void;
+}
+
+export const MessageField = ({ messages, setMessages, setMessageText }: MessageFieldProps) => {
     const [value, setValue] = useState("");
     return (
         <form
             className={cssPrefix}
             onSubmit={(e) => {
                 e.preventDefault();
-                // alert(value);
-                setMessages([...messages, { author: "Amir", text: value }]);
+                setValue("")
+                setMessageText(value);
             }}
         >
             <textarea
