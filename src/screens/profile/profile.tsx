@@ -11,7 +11,7 @@ export const ProfileScreen = () => {
         <br />
         surename: Alimzhanov
       </div>
-      <Link type='link' to='/signIn'>Sing-In</Link>
+      <Link type="link" to="/signIn">Sing-In</Link>
     </>
   )
 }

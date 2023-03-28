@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import "./message.scss";
 
-const cssPrefix = 'message';
+const cssPrefix = "message";
 
 
 type MessageProps = {

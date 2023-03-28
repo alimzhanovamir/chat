@@ -6,22 +6,22 @@ export const SignUp = () => {
     return (
         <div>
             <Input
-                label='Имя'
+                label="Имя"
                 value=""
                 onChange={() => {}}
             />
             <Input
-                label='e-mail'
+                label="e-mail"
                 value=""
                 onChange={() => {}}
             />
             <Input
-                label='Пароль' type='password'
+                label="Пароль" type="password"
                 value=""
                 onChange={() => {}}
             />
             <Input
-                label='Подтвердить пароль' type='password'
+                label="Подтвердить пароль" type="password"
                 value=""
                 onChange={() => {}}
             />

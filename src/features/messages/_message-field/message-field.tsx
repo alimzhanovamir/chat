@@ -3,17 +3,17 @@ import { MessageType } from "../../../screens/messages/messages";
 import { Button } from "../../../ui/button/button";
 import "./message-field.scss";
 
-const cssPrefix = 'message-field';
+const cssPrefix = "message-field";
 
 export const MessageField = ({ messages, setMessages }: { messages: MessageType[], setMessages: ([]) => void }) => {
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState("");
     return (
         <form
             className={cssPrefix}
             onSubmit={(e) => {
                 e.preventDefault();
                 // alert(value);
-                setMessages([...messages, { author: 'Amir', text: value }]);
+                setMessages([...messages, { author: "Amir", text: value }]);
             }}
         >
             <textarea

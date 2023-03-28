@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import './header.scss';
-const cssPrefix = 'header';
+import PropTypes from "prop-types";
+import "./header.scss";
+const cssPrefix = "header";
 
 interface HeaderInterface {
   children: string

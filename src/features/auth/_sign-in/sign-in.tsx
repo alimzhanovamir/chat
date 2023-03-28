@@ -28,8 +28,8 @@ import { Input } from "../../../ui/input/input";
 }
 
 export const SignIn = ({ saveAuthData }: { saveAuthData: (token: string) => void }) => {
-    const [login, setLogin] = useState('');
-    const [password, setPassword] = useState('');
+    const [login, setLogin] = useState("");
+    const [password, setPassword] = useState("");
 
     return (
         <div>
