@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageType } from "../../../screens/messages/messages";
+import { MessageType } from "../../../screens/room/room";
 import { Button } from "../../../ui/button/button";
 import "./message-field.scss";
 

@@ -4,10 +4,10 @@ import { AppContext } from "../../application";
 import { Header } from "../../features/header/header";
 import { Messages } from "../../features/messages/messages";
 import { MessageField } from "../../features/messages/_message-field/message-field";
-import "./messages.scss";
+import "./room.scss";
 
 
-type Chat = {
+type Room = {
     id: number;
     name: string;
     user: string;
@@ -53,33 +53,31 @@ const defaultMessages: MessageType[] = [
     },
 ]
 
-export const MesssagesScreen = () => {
+export const RoomScreen = () => {
     const { id, ...par } = useParams();
     const { token } = useContext(AppContext);
-    const [chatData, setChatData] = useState<Chat>({} as Chat);
+    const [roomData, setRoomData] = useState<Room>({} as Room);
     const [messages, setMessages] = useState<MessageType[]>(defaultMessages);
 
-    console.log("render", { id, par, chatData });
+    console.log("render", { id, par, roomData });
 
 
     useEffect(() => {
-        getChatById(token, id, setChatData);
+        getChatById(token, id, setRoomData);
     }, [id]);
 
     return (
-        <div className="messages-screen">
-            <Header>{`Чат: ${chatData.name}`}</Header>
+        <div className="room-screen">
+            <Header>{`Чат: ${roomData.name}`}</Header>
             <Messages messages={messages} />
             <MessageField messages={messages} setMessages={setMessages} />
         </div>
     )
 }
 
-async function getChatById(token: string, chatId: string, setChatData: (chatData: Chat) => void) {
-    console.log({ chatId });
-
+async function getChatById(token: string, roomId: string, setChatData: (roomData: Room) => void) {
     try {
-        const res = await fetch(`http://localhost:3000/chat/${chatId}`, {
+        const res = await fetch(`http://localhost:3000/room/${roomId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

@@ -12,4 +12,9 @@
     &:hover {
         background: rgb(60, 28, 221);
     }
+
+    &:disabled {
+        background: rgba(57, 23, 229, 0.5);
+        cursor: not-allowed;
+    }
 }

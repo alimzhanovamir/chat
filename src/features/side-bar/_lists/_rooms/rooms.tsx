@@ -1,12 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AppContext } from "../../../../application";
-import { Button } from "../../../../ui/button/button";
-import "./chats.scss";
+import "./rooms.scss";
 
-const cssPrefix = "chats";
+const cssPrefix = "rooms";
 
-export const Chats = () => {
+export const Rooms = () => {
     const { token } = useContext(AppContext);
     const [chats, setChats] = useState<Chat[]>([]);
 
@@ -18,7 +17,7 @@ export const Chats = () => {
         <ul className={`${cssPrefix}`}>
             {chats.map(({ id, name }) => (
                 <li className={`${cssPrefix}__item`}>
-                    <NavLink type="link" to={`/chat/${id}`}>
+                    <NavLink type="link" to={`/room/${id}`}>
                         <span>{name}</span>
                     </NavLink>
                 </li>
@@ -32,7 +31,7 @@ async function getChats(token: string, setChats: (chats: Chat[]) => void) {
     // console.log(JSON.stringify(token));
     
     try {
-        const res = await fetch("http://localhost:3000/chats", {
+        const res = await fetch("http://localhost:3000/rooms", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

@@ -16,14 +16,13 @@ import { Input } from "../../../ui/input/input";
 
         console.log({res});
         
-        if (res.status === 201) {
+        if (res.ok) {
             const data = await res.json();
             console.log(data);
             saveAuthData(data);
         }
     } catch (error) {
-        console.error(error);
-        
+        console.error(error); 
     }
 }
 

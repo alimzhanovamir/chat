@@ -10,7 +10,7 @@ interface InputInterface {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export const Input = ({ type, label, ...props }: InputInterface) => {
+export const Input = ({ type = "text", label, ...props }: InputInterface) => {
 
   return (
     <label className={cssPrefix}>

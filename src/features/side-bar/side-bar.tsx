@@ -1,4 +1,4 @@
-import { Chats } from "./_lists/_chats/chats";
+import { Rooms } from "./_lists/_rooms/rooms";
 import "./side-bar.scss";
 import { useContext } from "react";
 import { AppContext } from "../../application";
@@ -15,7 +15,7 @@ export const SideBar = () => {
                 <span>{userData?.username}</span>
                 <Link to={"/create"} className={`${cssPrefix}__button`} onClick={() => {}}>+</Link>
             </header>
-            <Chats />
+            <Rooms />
             <footer className={`${cssPrefix}__footer`}>
                 <button className={`${cssPrefix}__button`} onClick={removeToken}>Выйти</button>
             </footer>
