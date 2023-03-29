@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Header } from "../../features/header/header";
+import { Header } from "../../ui/header/header";
 import { Messages } from "../../features/messages/messages";
 import { fetchRoomInfo } from "../../features/room/room.actions";
 import { useDispatch, useSelector } from "../../store/hooks";
