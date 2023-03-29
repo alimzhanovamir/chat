@@ -12,7 +12,7 @@ export const Rooms = () => {
 
     useEffect(() => {
         dispatch(fetchRooms());
-    }, [])
+    }, []);
 
     return (
         <ul className={`${cssPrefix}`}>

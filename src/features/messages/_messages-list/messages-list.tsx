@@ -21,6 +21,9 @@ export const MessagesList = memo(({ roomId }: MessagesListType) => {
         dispatch(fetchMessages(roomId))
     },[roomId]);
 
+    console.log(messages);
+    
+
     if (messages.length === 0) return (
         <div className={cssPrefix}>
             <span className={`${cssPrefix}__stub`}>Нет сообщений</span>
@@ -30,7 +33,7 @@ export const MessagesList = memo(({ roomId }: MessagesListType) => {
     return (
         <Virtuoso
             data={messages}
-            initialTopMostItemIndex={messages.length - 1}
+            initialTopMostItemIndex={messages.length - 1 < 1 ? 1 : messages.length - 1}
             followOutput={"smooth"}
             itemContent={(_, message) => {
                 const right = message.user === currentUser.email;

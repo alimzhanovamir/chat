@@ -28,6 +28,8 @@ export const MessageField = ({ socket, roomId }: MessagesFiledType) => {
             "message",
             { roomId, user: user.email, username: user.name, text: value },
             ({ user, username, text }: { user: string, username: string, text: string }) => {
+                console.log("addMessage emmit");
+                
                 dispatch(addMessage({ user, username, text }));
             }
         );

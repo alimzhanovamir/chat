@@ -2,6 +2,8 @@ import { memo, useEffect, useRef } from "react";
 import { MessagesList } from "./_messages-list/messages-list";
 import { MessageField } from "./_message-field/message-field";
 import { io, Socket } from "socket.io-client";
+import { addMessage, dropMessages } from "./messages.slice";
+import { useDispatch } from "../../store/hooks";
 
 type MessageType = {
     roomId: string;
@@ -10,25 +12,21 @@ type MessageType = {
 const socket = io("http://localhost:3000");
 
 export const Messages = memo(({ roomId }: MessageType) => {
-    const socketRef = useRef<Socket>(null);
+    const dispatch = useDispatch();
     
     useEffect(() => {
-        // socketRef.current = io("http://localhost:3000");
-        // socketRef.current.emit("join", roomId);
-        // socketRef.current.on("disconnect", () => {
-        //     console.log("disconnect");
-        // });
-
         socket.emit("join", roomId);
+        socket.on("message", (message) => {
+            console.log("message", message);
+            dispatch(addMessage(message));
+        });
 
         return () => {
             console.log("unmount");
             socket.emit("leave", roomId);
+            dispatch(dropMessages())
         }
     }, [roomId]);
-
-    console.log({ socketRef: socketRef.current });
-    
     
     return (
         <>
