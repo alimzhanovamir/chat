@@ -26,3 +26,10 @@ export const Message = ({ author, text, timestamp, right }: MessageProps) => (
         </div>
     </div>
 );
+
+
+export type MessageType = {
+    user: string;
+    username: string;
+    text: string;
+}

@@ -1,32 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "../../../store/hooks";
 import { Button } from "../../../ui/button/button";
 import { Input } from "../../../ui/input/input";
+import { authRequest } from "../auth.actions";
 
- async function signIn(email: string, password: string, saveAuthData: (token: string) => void) {
-    console.log(email, password);
-
-    try {
-        const res = await fetch("http://localhost:3000/auth/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email, password }),
-        });
-
-        console.log({res});
-        
-        if (res.ok) {
-            const data = await res.json();
-            console.log(data);
-            saveAuthData(data);
-        }
-    } catch (error) {
-        console.error(error); 
-    }
-}
-
-export const SignIn = ({ saveAuthData }: { saveAuthData: (token: string) => void }) => {
+export const SignIn = () => {
+    const dispatch = useDispatch()
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
 
@@ -45,7 +24,7 @@ export const SignIn = ({ saveAuthData }: { saveAuthData: (token: string) => void
                 onChange={(e) => setPassword(e.target.value)}
             />
 
-            <Button onClick={() => signIn(login, password, saveAuthData)}>Войти</Button>
+            <Button onClick={() => dispatch(authRequest({ login, password }))}>Войти</Button>
         </div>
     )
 }

@@ -1,0 +1,12 @@
+.messages-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    
+    &__stub {
+        display: block;
+        border-radius: 3px;
+        padding: 20px;
+    }
+}

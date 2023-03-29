@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import classnames from "classnames";
 import { SignIn } from "./_sign-in/sign-in";
 import { SignUp } from "./_sign-up/sign-up";
@@ -8,7 +8,6 @@ import { AppContext } from "../../application";
 
 
 export const Auth = () => {
-    const { saveAuthData } = useContext(AppContext);
     const [signUp, setSignUp] = useState(false);
 
     return (
@@ -31,7 +30,7 @@ export const Auth = () => {
                     >Зарегистрироваться</button>
                 </li> 
             </ul>
-            {signUp ? <SignUp /> : <SignIn saveAuthData={saveAuthData}/>}
+            {signUp ? <SignUp /> : <SignIn />}
         </div>
     )
 }

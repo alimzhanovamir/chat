@@ -1,38 +1,39 @@
-import { Message } from "./_message/message";
-import "./messages.scss";
-import { Virtuoso } from "react-virtuoso";
-import { memo } from "react";
-
-const cssPrefix = "messages";
+import { memo, useEffect, useRef } from "react";
+import { MessagesList } from "./_messages-list/messages-list";
+import { MessageField } from "./_message-field/message-field";
+import { io, Socket } from "socket.io-client";
 
 type MessageType = {
-    user: string;
-    username: string;
-    text: string;
-}
+    roomId: string;
+};
 
-export const Messages = memo(({ messages, currentUser }:{ messages: MessageType[], currentUser: string}) => {
-    // if (!messages.length) return <div className={cssPrefix}>Нет сообщений</div>;
-    console.log("render messages", messages.length - 1);
+const socket = io("http://localhost:3000");
+
+export const Messages = memo(({ roomId }: MessageType) => {
+    const socketRef = useRef<Socket>(null);
+    
+    useEffect(() => {
+        // socketRef.current = io("http://localhost:3000");
+        // socketRef.current.emit("join", roomId);
+        // socketRef.current.on("disconnect", () => {
+        //     console.log("disconnect");
+        // });
+
+        socket.emit("join", roomId);
+
+        return () => {
+            console.log("unmount");
+            socket.emit("leave", roomId);
+        }
+    }, [roomId]);
+
+    console.log({ socketRef: socketRef.current });
+    
     
     return (
-        <Virtuoso
-            data={messages}
-            initialTopMostItemIndex={messages.length - 1}
-            followOutput={"smooth"}
-            itemContent={(_, message) => {
-                const right = message.user === currentUser;
-                return <Message author={message.username} text={message.text} right={right}/>
-            }}
-        />    
-    )
-
-    // return (
-    //     <div className={cssPrefix}>
-    //         {messages.map((message) => {
-    //             const right = message.user === currentUser;
-    //             return <Message author={message.username} text={message.text} right={right}/>
-    //         })}
-    //     </div>
-    // )
+        <>
+            <MessagesList roomId={roomId} />
+            <MessageField socket={socket} roomId={roomId} />
+        </>  
+    );
 });

@@ -1,25 +1,46 @@
 import { useState } from "react";
-import { MessageType } from "../../../screens/room/room";
+import { Socket } from "socket.io-client";
+import { useDispatch, useSelector } from "../../../store/hooks";
 import { Button } from "../../../ui/button/button";
+import { addMessage } from "../messages.slice";
 import "./message-field.scss";
+
+
+type MessagesFiledType = {
+    socket: Socket;
+    roomId: string;
+};
 
 const cssPrefix = "message-field";
 
-type MessageFieldProps = {
-    messages: MessageType[];
-    setMessages: (messages: MessageType[]) => void;
-    setMessageText: (text: string) => void;
-}
-
-export const MessageField = ({ messages, setMessages, setMessageText }: MessageFieldProps) => {
+export const MessageField = ({ socket, roomId }: MessagesFiledType) => {
+    const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.auth);
     const [value, setValue] = useState("");
+
+    console.log({ socket });
+    
+
+    const handleSubmit = () => {
+        console.log(user, { roomId, user: user.email, username: user.name, text: value });
+        
+        socket.emit(
+            "message",
+            { roomId, user: user.email, username: user.name, text: value },
+            ({ user, username, text }: { user: string, username: string, text: string }) => {
+                dispatch(addMessage({ user, username, text }));
+            }
+        );
+        setValue("");
+    }
+
     return (
         <form
             className={cssPrefix}
             onSubmit={(e) => {
                 e.preventDefault();
-                setValue("")
-                setMessageText(value);
+                handleSubmit();
+                setValue("");
             }}
         >
             <textarea
