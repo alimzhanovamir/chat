@@ -17,13 +17,14 @@ export const Messages = memo(({ roomId }: MessageType) => {
     useEffect(() => {
         socket.emit("join", roomId);
         socket.on("message", (message) => {
-            console.log("message", message);
+            console.log("message fire", message);
             dispatch(addMessage(message));
         });
 
         return () => {
             console.log("unmount");
             socket.emit("leave", roomId);
+            socket.off("message");
             dispatch(dropMessages())
         }
     }, [roomId]);
