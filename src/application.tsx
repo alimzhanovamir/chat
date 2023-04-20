@@ -21,7 +21,11 @@ export const Application = () => {
     const { token } = useSelector((state) => state.auth);
     const isAuth = Boolean(token);
     console.log({token});
-    
+
+    if (!isAuth && window.location.pathname !== '/') {
+        window.location.href = '/';
+    }
+
 
     return (
         <div className="application">

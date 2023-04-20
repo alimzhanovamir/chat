@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "../../../store/hooks";
 import { Button } from "../../../ui/button/button"
 import { Input } from "../../../ui/input/input"
@@ -7,7 +6,6 @@ import { createUser } from "../auth.actions";
 
 export const SignUp = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [name, setName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");

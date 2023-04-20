@@ -1,41 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export type authDataType = {
     login: string;
     password: string
 };
-
-export const authRequest = createAsyncThunk("auth/login", async (data: authDataType) => {
-    console.log("auth/login");
-    
-    try {
-        const response = await fetch("http://localhost:3000/auth/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email: data.login, password: data.password }),
-        });
-        const responseData = await response.json();
-        const { token, userData } = responseData;
-
-        localStorage.setItem('token', token);
-        localStorage.setItem('userData', JSON.stringify({
-            id: userData.id,
-            name: userData.username,
-            email: userData.email,
-        }));
-
-        return responseData;
-    } catch (error) {
-        console.error(error); 
-    }
-});
-
-export const authLogout = createAsyncThunk("auth/logout", () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userData');
-});
 
 type CreateUserDataType = {
     username: string;
@@ -43,22 +12,52 @@ type CreateUserDataType = {
     password: string;
 };
 
-export const createUser = createAsyncThunk("auth/create", async ({ username, email, password }: CreateUserDataType, { dispatch }) => {
-    console.log("auth/create");
-    
-    try {
-        const response = await fetch("http://localhost:3000/user", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, email, password }),
-        });
-        const { ...userData } = await response.json();
-        console.log({ login: userData.email, password: userData.password });
-        
-        dispatch(authRequest({ login: userData.email, password: userData.password }));
-    } catch (error) {
-        console.error(error); 
+
+const axiosAuthInstance = axios.create({
+    baseURL: "http://localhost:3000",
+    withCredentials: true,
+    headers: {
+        "Content-Type": "application/json",
     }
+});
+
+export const authRequest = createAsyncThunk("auth/login", async (data: authDataType) => {
+    console.log("auth/login");
+
+    const response = await axiosAuthInstance.post("auth/login", { email: data.login, password: data.password });
+
+
+    if (response.status === 401) {
+        throw new Error("Неправильный логин или пароль");
+    }
+
+    const authData = response.data;
+    console.log({ authData });
+    
+    const { token, userData } = authData;
+
+    localStorage.setItem('token', token);
+    localStorage.setItem('userData', JSON.stringify({
+        id: userData.id,
+        name: userData.username,
+        email: userData.email,
+    }));
+
+    return authData;
+});
+
+export const authLogout = createAsyncThunk("auth/logout", () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userData');
+});
+
+
+export const createUser = createAsyncThunk("create", async ({ username, email, password }: CreateUserDataType, { dispatch }) => {
+    console.log("auth/create");
+
+    const reponse = await axiosAuthInstance.post("user", { username, email, password });
+    const userData = reponse.data;
+    console.log({ userData });
+    
+    dispatch(authRequest({ login: userData.email, password: password }));
 });

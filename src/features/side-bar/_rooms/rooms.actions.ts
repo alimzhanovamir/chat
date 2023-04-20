@@ -1,24 +1,13 @@
 import { RootState } from '../../../store/store';
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { authLogout } from "../../auth/auth.actions";
+import { $api } from "../../../api/api";
 
-export const fetchRooms = createAsyncThunk("rooms/fetch", async (_, { getState }) => {
+export const fetchRooms = createAsyncThunk("rooms/fetch", async (_, { getState, dispatch }) => {
     console.log("rooms/fetch");
+
+    const rooms = await $api.getRooms();
+    console.log({rooms});
     
-    try {
-        const { auth: { token } } = getState() as RootState;
-        const res = await fetch("http://localhost:3000/rooms", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
-            },
-        });
-
-        const rooms = await res.json();
-        console.log({rooms});
-        return rooms;
-
-    } catch (error) {
-        console.error(error);
-    }
+    return rooms;
 });

@@ -20,6 +20,8 @@ export const roomSlice = createSlice({
     extraReducers(builder) {
         builder
             .addCase(fetchRoomInfo.fulfilled, (state, { payload }) => {
+                console.log("room/fetch/fulfilled", payload);
+                
                 state.id = payload.id;
                 state.name = payload.name;
                 state.user = payload.user;

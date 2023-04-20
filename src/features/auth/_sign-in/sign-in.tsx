@@ -1,13 +1,21 @@
-import { useState } from "react";
-import { useDispatch } from "../../../store/hooks";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "../../../store/hooks";
 import { Button } from "../../../ui/button/button";
 import { Input } from "../../../ui/input/input";
 import { authRequest } from "../auth.actions";
+import { removeAuthError } from "../auth.slice";
 
 export const SignIn = () => {
     const dispatch = useDispatch()
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
+    const error: string | null = useSelector((state) => state.auth.error);
+
+    useEffect(() => {
+        if (error) {
+            dispatch(removeAuthError());
+        }
+    }, [login, password]);
 
     return (
         <div>
@@ -24,7 +32,11 @@ export const SignIn = () => {
                 onChange={(e) => setPassword(e.target.value)}
             />
 
-            <Button onClick={() => dispatch(authRequest({ login, password }))}>Войти</Button>
+            <Button
+                disabled={!login || !password}
+                onClick={() => dispatch(authRequest({ login, password }))}
+            >Войти</Button>
+            {error && <p>{error}</p>}
         </div>
     )
 }

@@ -25,7 +25,7 @@ export const Messages = memo(({ roomId }: MessageType) => {
             console.log("unmount");
             socket.emit("leave", roomId);
             socket.off("message");
-            dispatch(dropMessages())
+            dispatch(dropMessages());
         }
     }, [roomId]);
     

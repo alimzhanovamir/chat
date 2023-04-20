@@ -8,6 +8,7 @@ export type AuthStateType = {
         name: string | null;
         email: string | null;
     };
+    error: string | null;
 }
 
 const authState: AuthStateType = {
@@ -17,14 +18,21 @@ const authState: AuthStateType = {
         name: null,
         email: null,
     },
+    error: null
 }
 
 export const authSlice = createSlice({
     name: "auth",
     initialState: authState,
+    reducers: {
+        removeAuthError(state) {
+            state.error = null;
+        }
+    },
     extraReducers(builder) {
         builder
             .addCase(authRequest.fulfilled, (state, { payload }) => {
+                console.log(payload);
                 state.token = payload.token;
                 state.user = {
                     id: payload.userData.id,
@@ -32,12 +40,16 @@ export const authSlice = createSlice({
                     email: payload.userData.email,
                 }
             })
+            .addCase(authRequest.rejected, (state, action) => {
+                state.error = action.error.message;
+            })
             .addCase(authLogout.fulfilled, (state) => {
                 state.token = null;
                 state.user = authState.user;
             });
-    },
-    reducers: undefined
+    }
 });
+
+export const { removeAuthError } = authSlice.actions;
 
 export default authSlice.reducer

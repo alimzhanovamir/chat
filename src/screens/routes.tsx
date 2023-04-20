@@ -14,5 +14,6 @@ export const getRoutes = (): route[] => {
     getRoute("room/:id", <RoomScreen />),
     getRoute("/auth", <AuthScreen />),
     getRoute("/create", <CreateRoomScreen />),
+    getRoute("/auth", <AuthScreen />),
   ]
 }
