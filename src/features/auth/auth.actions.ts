@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { $api } from "../../api/api";
 
 export type authDataType = {
     login: string;
@@ -46,7 +47,8 @@ export const authRequest = createAsyncThunk("auth/login", async (data: authDataT
     return authData;
 });
 
-export const authLogout = createAsyncThunk("auth/logout", () => {
+export const authLogout = createAsyncThunk("auth/logout", async () => {
+    await $api.logout();
     localStorage.removeItem('token');
     localStorage.removeItem('userData');
 });
@@ -55,8 +57,8 @@ export const authLogout = createAsyncThunk("auth/logout", () => {
 export const createUser = createAsyncThunk("create", async ({ username, email, password }: CreateUserDataType, { dispatch }) => {
     console.log("auth/create");
 
-    const reponse = await axiosAuthInstance.post("user", { username, email, password });
-    const userData = reponse.data;
+    const reponse = await axiosAuthInstance.post("auth/signUp", { username, email, password });
+    const { userData } = reponse.data;
     console.log({ userData });
     
     dispatch(authRequest({ login: userData.email, password: password }));

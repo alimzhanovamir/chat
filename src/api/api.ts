@@ -39,6 +39,8 @@ axiosInstance.interceptors.response.use(
         return config
     },
     async (error) => {
+        console.log("INTERCEPTOR RESPONSE ERROR");
+        
         const originalRequest = error.config;
         console.log(error.response.status);
         
@@ -47,11 +49,6 @@ axiosInstance.interceptors.response.use(
                 console.log("INTERCEPTOR RESPONSE 401");
                 
                 const response = await axios.get(`${API_URL}/auth/refreshToken`, {  withCredentials: true });
-                
-                if (response.status === 401) {
-                    window.location.href = '/';
-                    throw new Error("Рефреш токен не валиден");
-                }
 
                 localStorage.setItem('token', response.data.accessToken);
 
@@ -59,7 +56,8 @@ axiosInstance.interceptors.response.use(
 
                 return axios.request(originalRequest);
             } catch (error) {
-                console.log("Пользователь не авторизован", error);
+                localStorage.removeItem('token');
+                window.location.href = '/';
             }
         }
     }
@@ -114,12 +112,23 @@ const getRooms = async () => {
     }
 }
 
+const logout = async () => {
+    try {
+        await axiosInstance.patch(`/auth/logout`, {
+            token: null
+        });
+    } catch (error) {
+        console.error(error?.data?.message)
+    }
+}
+
 export const $api = {
     checkAuth,
     getMessagesByRoomId,
     createRoom,
     getRoomInfo,
     getRooms,
+    logout,
 };
 
 
