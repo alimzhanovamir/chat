@@ -41,7 +41,9 @@ export const authSlice = createSlice({
                 }
             })
             .addCase(authRequest.rejected, (state, action) => {
-                state.error = action.error.message;
+                console.log(action);
+                
+                state.error = "Неправильный логин или пароль";
             })
             .addCase(authLogout.fulfilled, (state) => {
                 state.token = null;

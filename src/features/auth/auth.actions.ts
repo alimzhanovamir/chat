@@ -28,9 +28,9 @@ export const authRequest = createAsyncThunk("auth/login", async (data: authDataT
     const response = await axiosAuthInstance.post("auth/login", { email: data.login, password: data.password });
 
 
-    if (response.status === 401) {
-        throw new Error("Неправильный логин или пароль");
-    }
+    // if (response.status === 401) {
+    //     throw new Error("Неправильный логин или пароль");
+    // }
 
     const authData = response.data;
     console.log({ authData });
